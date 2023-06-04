@@ -41,3 +41,20 @@
     transform: scale(1.08);
     opacity: 1;
 }
+
+.exitbutton{
+    position: absolute;
+    top: 60px;
+    right: 0;
+    padding-right: 10px;
+    background: transparent;
+    color: rgb(255, 252, 252);
+    
+    font-size: 2rem;
+    cursor: pointer;
+    border: none;
+}
+
+.exitbutton:hover{
+    color: rgb(255, 0, 0);
+}

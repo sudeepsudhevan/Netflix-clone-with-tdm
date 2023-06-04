@@ -19,7 +19,7 @@ function RowPost(props) {
   }, [])
   const opts = {
     height: '390',
-    width: '640',
+    width: '100%',
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       autoplay: 0,
@@ -29,13 +29,16 @@ function RowPost(props) {
     console.log(id)
     axios.get(`/movie/${id}/videos?api_key=${api_key}&language=en-US`).then((response) => {
       console.log(response.data)
-      
-      if(response.data.results.length!==0){
-        setUrlId(response.data.results[0])
+      const trailer = response.data.results.find(video => video.type === "Trailer")
+      if(trailer){
+        setUrlId(trailer)
       }else{
         console.log('array empty')
       }
     })
+  }
+  const handleExit = () => {
+    setUrlId(null)
   }
 
   return (
@@ -46,8 +49,13 @@ function RowPost(props) {
                 <img onClick={()=>handleMovie(obj.id)} className={props.isSmall ? 'smallposter':'poster'} src={`${imageUrl+obj.backdrop_path}`} alt="poster" />
             ))}
         </div>
-        <div>
-        {urlId && <YouTube videoId={urlId.key} opts={opts} />}
+        <div style={{ position: 'relative' }}>
+        {urlId && (
+        <>
+          <YouTube videoId={urlId.key} opts={opts} />
+          <button className='exitbutton' onClick={handleExit}>X</button>
+        </>
+      )}
         </div>  
     </div>
     
