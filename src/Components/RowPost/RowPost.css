@@ -9,6 +9,8 @@
     overflow-x: scroll;
     overflow-y: hidden;
     padding: 20px;
+    scrollbar-width: none;
+    -ms-overflow-style: none
 }
 
 .posters::-webkit-scrollbar{
@@ -20,4 +22,22 @@
     object-fit: contain;
     margin-right: 10px;
     transition: transform 450ms;
+    cursor:pointer
+}
+
+.smallposter{
+    max-height: 150px;
+    margin-right: 10px;
+    transition: transform 450ms;
+    cursor:pointer
+}
+
+.poster:hover{
+    transform: scale(1.08);
+    opacity: 1;
+}
+
+.smallposter:hover{
+    transform: scale(1.08);
+    opacity: 1;
 }
